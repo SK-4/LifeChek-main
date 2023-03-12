@@ -99,3 +99,6 @@ def display_all_patients(request):
         'patients': patients
     }
     return render(request, 'accounts/doctor/all-patient.html', context)
+
+def music(request):
+    return render(request,'music.html')
