@@ -22,6 +22,11 @@ class User(AbstractUser):
                                     error_messages={
                                         'unique': "A user with that phone number already exists."
                                     })
+    mental_score = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True,
+                                    error_messages={
+                                        'max_value': "Mental score can't be greater than 100%",
+                                        'min_value': "Mental score can't be less than 0%"
+                                    })
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []

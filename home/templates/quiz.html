@@ -1,25 +1,25 @@
-{%extends 'base.html'%}
-{%block content%}
-	<!-- banner 2 -->
-	<div class="inner-banner-w3ls">
-		<div class="container">
+{% extends 'base.html' %}
+count = 1
+{% block content %}
+    <!-- banner 2 -->
+    <div class="inner-banner-w3ls">
+        <div class="container">
+        </div>
+    </div>
+    <!-- //banner 2 -->
 
-		</div>
-		<!-- //banner 2 -->
-	</div>
-
-  <!-- <h1>Question {{ question.id }}</h1> -->
-  <p>{{ question.text }}</p>
-
-  <form method="post">
-    {% csrf_token %}
-    {% for option in question.options %}
-      <div>
-        <input type="radio" name="selected_option" id="{{ option }}" value="{{ option }}">
-        <label for="{{ option }}">{{ option }}</label>
-      </div>
-    {% endfor %}
-
-    <button type="submit">Submit</button>
-  </form>
+    {% for question in questions %}
+        
+        <p>{{ question.text }}</p>
+        <form method="post">
+            {% csrf_token %}
+            {% for option in question.options %}
+                <div>
+                    <input type="radio" name="question_{{ question.id }}" id="{{ option }}" value="{{ option }}">
+                    <label for="{{ option }}">{{ option }}</label>
+                </div>
+            {% endfor %}
+        {% endfor %}
+        <button type="submit">Submit</button>
+        </form>
 {% endblock %}

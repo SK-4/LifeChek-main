@@ -8,6 +8,25 @@
   <!-- //banner 2 -->
 </div>
 
+<div class="results-container">
   <h1>Quiz Results</h1>
-  <p>Your score is {{ score }} out of {{ count }}.</p>
+  <p class="result-message">You are mentally healthy. Please take care of yourself.</p>
+</div>
+
+<style>
+  .results-container {
+    text-align: center;
+    margin-top: 50px;
+  }
+
+  .result-message {
+    color: #333;
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 30px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+</style>
+
 {% endblock %}

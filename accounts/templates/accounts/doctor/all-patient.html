@@ -41,6 +41,8 @@
         <th scope="col">Email</th>
         <th scope="col">Date Joined</th>
         <th scope="col">Role</th>
+        <th scope="col">Mental Score</th>
+
       </tr>
     </thead>
             {% for patient in patients %}
@@ -51,6 +53,8 @@
         <td>{{patient.email}}</td>
         <td>{{patient.date_joined}}</td>
         <td>{{patient.role}}</td>
+        <td>{{patient.mental_score}} %</td>
+
 
       
     </tbody>
