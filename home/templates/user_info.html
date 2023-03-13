@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="inner-banner-w3ls">
+  <div class="container">
+
+  </div>
+  <!-- //banner 2 -->
+</div>
+
+<div class="container">
+<div class="row">
+    <div class="col-md-12">
+    <h1>Relative Information</h1>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+        <label for="relative_name">Relative Name:</label>
+        <input type="text" class="form-control" id="relative_name" name="relative_name" required>
+        </div>
+        <div class="form-group">
+        <label for="relative_email">Relative Email:</label>
+        <input type="email" class="form-control" id="relative_email" name="relative_email" required>
+        </div>
+        <div class="form-group">
+        <label for="relative_phone_number">Relative Phone Number:</label>
+        <input type="tel" class="form-control" id="relative_phone_number" name="relative_phone_number" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    </div>
+</div>
+</div>
+{% endblock %}

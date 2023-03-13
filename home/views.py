@@ -3,6 +3,13 @@ from .models import Question
 from accounts.models import User
 from random import sample
 from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.views import View
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.urls import reverse_lazy
+from .forms import RelativeForm
 
 def index(request):
     return render(request, 'index.html')
@@ -21,6 +28,7 @@ def index(request):
 
 #     return render(request, 'quiz.html', {'questions': questions})
 
+@login_required
 def quiz(request):
     questions = Question.objects.all()[:5]
 
@@ -102,3 +110,27 @@ def display_all_patients(request):
 
 def music(request):
     return render(request,'music.html')
+
+class RelativeView(LoginRequiredMixin, View):
+    form_class = RelativeForm
+    template_name = 'user_info.html'
+    # success_url = reverse_lazy('home')
+
+    def get(self, request, *args, **kwargs):
+        form = self.form_class()
+        return render(request, self.template_name, {'form': form})
+
+    def post(self, request, *args, **kwargs):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            user = User.objects.get(email=request.user.email)
+            user.relative_name = form.cleaned_data['relative_name']
+            user.relative_email = form.cleaned_data['relative_email']
+            user.relative_phone_number = form.cleaned_data['relative_phone_number']
+            user.save()
+            messages.success(request, 'Relative information saved successfully!')
+            return redirect(success_url)
+        # return render(request, self.template_name, {'form': form})
+
+def success_url(request):
+    return render(request,'success.html')

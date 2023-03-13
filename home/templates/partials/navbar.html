@@ -26,17 +26,6 @@
 								</a>
 							</li>
 
-							<li class="nav-item dropdown nav-item  mx-lg-3 my-lg-0 my-3">
-								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-								    aria-haspopup="true" aria-expanded="false">
-									Mental Health Prediction
-								</a>
-								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-
-									<a class="dropdown-item " href="{% url 'quiz' %}">Mental Quiz </a>
-									<a class="dropdown-item " href="{% url 'music' %}">Mental Peace Music</a>
-								</div>
-							</li>
 
 							<!-- NavBar for doctor when logged in -->
 							<li class="nav-item mx-lg-4">
@@ -70,6 +59,18 @@
 						<!-- <li class="nav">
 							<a href="nav-link">  {{ request.user.first_name }}</a>
 						</li> -->
+						<li class="nav-item dropdown nav-item  mx-lg-3 my-lg-0 my-3">
+							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+								aria-haspopup="true" aria-expanded="false">
+								Mental Health Prediction
+							</a>
+							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+
+								<a class="dropdown-item " href="{% url 'quiz' %}">Mental Quiz </a>
+								<a class="dropdown-item " href="{% url 'music' %}">Mental Peace Music</a>
+							</div>
+						</li>
+						
 						<li class="nav-item dropdown">
 							<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
 								aria-haspopup="true" aria-expanded="false">
@@ -78,6 +79,7 @@
 							<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 
 								<a class="dropdown-item " href="{% url 'patient-profile-update' %}"> EDIT PROFILE</a>
+								<a class="dropdown-item " href="{% url 'RelativeView' %}"> Personal Guide </a>
 								<a class="dropdown-item " href="{% url 'logout' %}">LOGOUT</a>
 
 							</div>

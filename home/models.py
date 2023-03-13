@@ -10,3 +10,8 @@ class Question(models.Model):
     def __str__(self):
         return self.text
 
+class User(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    relatives_number = models.CharField(max_length=20)
+

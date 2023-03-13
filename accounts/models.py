@@ -27,6 +27,10 @@ class User(AbstractUser):
                                         'max_value': "Mental score can't be greater than 100%",
                                         'min_value': "Mental score can't be less than 0%"
                                     })
+    
+    relative_name = models.CharField(max_length=50, blank=True, null=True)
+    relative_email = models.EmailField(blank=True, null=True)
+    relative_phone_number = models.CharField(blank=True, null=True, max_length=20)
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = []
