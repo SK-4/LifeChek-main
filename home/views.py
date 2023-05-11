@@ -100,7 +100,7 @@ def results(request):
     # return render(request, 'results.html', {'score': score, 'count': count})
 
 def display_all_patients(request):
-    patients = User.objects.filter(role="patient").values('first_name', 'last_name', 'email','date_joined','role','mental_score')
+    patients = User.objects.filter(role="patient").values('first_name', 'last_name', 'email','date_joined','mental_score')
     # print(patients)
     context = {
         'title': 'All Patients',

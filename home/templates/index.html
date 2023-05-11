@@ -1,3 +1,6 @@
+{% extends 'base.html' %}
+{% block title %} Home  {% endblock %}
+{% block content %}
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
@@ -17,15 +20,15 @@
     <!-- Google Fonts -->
 
     <!-- Vendor CSS Files -->
-    <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
+    <!-- <link href="{% static 'vendor/aos/aos.css' %}" rel="stylesheet">
     <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'vendor/bootstrap-icons/bootstrap-icons.css' %}" rel="stylesheet">
     <link href="{% static 'vendor/boxicons/css/boxicons.min.css' %}" rel="stylesheet">
     <link href="{% static 'vendor/glightbox/css/glightbox.min.css' %}" rel="stylesheet">
-    <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %} " rel="stylesheet">
+    <link href="{% static 'vendor/swiper/swiper-bundle.min.css' %} " rel="stylesheet"> -->
 
     <!-- Template Main CSS File -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!-- <link href="{% static 'css/style.css' %}" rel="stylesheet"> -->
 
     <!-- =======================================================
   * Template Name: Techie - v4.1.0
@@ -46,19 +49,102 @@
                 
                 src="assets/img/logo.png" alt="" class="img-fluid"></a> -->
 
-            <nav id="navbar" class="navbar">
-                <ul>
-                    <li ><a class="nav-link scrollto active" href="#hero">Home</a></li>
-                    <li><a class="nav-link scrollto" href="#services">Features</a></li>
-                    <li><a class="nav-link scrollto" href="#blogs">Blogs</a></li>
-                    <li><a class="nav-link scrollto" href="#about">About</a></li>
-                    <li><a href="accounts/doctor/register">Register</a></li>
-                    <li><a href="accounts/login">Login</a></li>
-                    <li><a class="getstarted scrollto" href="/chatroom">Chat with Calmly</a></li>
-                </ul>
-                <i class="bi bi-list mobile-nav-toggle"></i>
-            </nav>
-            <!-- .navbar -->
+                <nav class="navbar navbar-expand-lg navbar-light fixed-navi">
+                    <div class="container">
+                        <!-- logo -->
+                        <!-- //logo -->
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse text-center" id="navbarSupportedContent">
+                            <ul class="navbar-nav ml-lg-auto">
+                                <li class="nav-item active mt-lg-0 mt-3">
+                                    <a class="nav-link" href="{% url 'home' %}">Home
+                                        <span class="sr-only">(current)</span>
+                                    </a>
+                                </li>
+    
+                                <!-- NavBar for doctor when logged in -->
+                                <li class="nav-item mx-lg-4">
+                                    <a class="nav-link" href="{% url 'doctor' %}">Doctor</a>
+                                </li>
+                                {% if request.user.is_authenticated and request.user.role == 'doctor' %}
+                                <a href="#">
+                                    <i class="fal fa-user-cog" style="color: rgb(0, 0, 0); font-size: 30px;"></i>
+                                </a>
+                                <li class="nav-item dropdown">
+                                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                        aria-haspopup="true" aria-expanded="false">
+                                        {{ request.user.first_name }}
+                                    </a>
+    <!--								<a href="#">-->
+    <!--									<i class="fal fa-user-cog" style="color: white; font-size: 30px;"></i>-->
+    <!--								</a>-->
+                                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    
+                                        <a class="dropdown-item " href="{% url 'doctor-profile-update' %}">Profile</a>
+                                        <a class="dropdown-item " href="{% url 'patient-list' %}">patient</a>
+                                        <a class="dropdown-item " href="{% url 'display_all_patients' %}">patient-list</a>
+                                        <a class="dropdown-item " href="{% url 'doctor-appointment' %}"> appointments</a>
+                                        <a class="dropdown-item " href="{% url 'doctor-appointment-create' %}">create appointment</a>
+                                        <a class="dropdown-item " href="{% url 'logout' %}">logout</a>
+                                    </div>
+                                </li>
+                                <!-- login -->
+    
+                            {% elif request.user.is_authenticated and request.user.role == 'patient' %}
+                            <!-- <li class="nav">
+                                <a href="nav-link">  {{ request.user.first_name }}</a>
+                            </li> -->
+                            <li class="nav-item dropdown nav-item  mx-lg-3 my-lg-0 my-3">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    Mental Health Prediction
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    
+                                    <a class="dropdown-item " href="{% url 'quiz' %}">Mental Quiz </a>
+                                    <a class="dropdown-item " href="{% url 'music' %}">Mental Peace Music</a>
+                                </div>
+                            </li>
+                            
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false">
+                                    {{ request.user.first_name }}
+                                </a>
+                                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    
+                                    <a class="dropdown-item " href="{% url 'patient-profile-update' %}">profile</a>
+                                    <a class="dropdown-item " href="{% url 'RelativeView' %}">personal guide</a>
+                                    <a class="dropdown-item " href="{% url 'logout' %}">logout</a>
+    
+                                </div>
+                            </li>
+                            <!-- login -->
+    
+                        <!-- dropdown for registering doctor and patient -->
+                        {% else %}
+                        <li class="nav-item dropdown nav-item  mx-lg-3 my-lg-0 my-3">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false">
+                                Register
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+    
+                                <a class="dropdown-item " href="{% url 'doctor-register' %}">DOCTOR</a>
+                                <a class="dropdown-item " href="{% url 'patient-register' %}">PATIENT</a>
+                            </div>
+                        </li>
+                    </ul>
+                            <a href="{% url 'login' %}" class="login-button ml-lg-5 mt-lg-0 mt-3 mb-lg-0 mb-3"  >
+                                <i class="fas fa-sign-in-alt mr-2"></i>Login</a>
+                            <!-- //login -->
+                            {% endif %}
+                        </div>
+                    </div>
+                </nav>            <!-- .navbar -->
 
         </div>
     </header>
@@ -271,5 +357,5 @@
 <script src="{% static 'js/main.js' %}"></script>
 
 </body>
-
+{% endblock %}
 </html>

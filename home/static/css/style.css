@@ -2,7 +2,7 @@
 body {
     padding: 0;
     margin: 0;
-    background: #FFF;
+    background: #000000;
     font-family: 'Open Sans', sans-serif;
 }
 
@@ -251,7 +251,7 @@ a.navbar-brand {
 }
 
 a.navbar-brand span {
-    color: #fff;
+    color: #ff0000;
 }
 
 a.navbar-brand i,
@@ -263,16 +263,16 @@ a.navbar-brand i,
 /* //logo */
 /* login button */
 a.login-button {
-    color: #fff;
+    color: #d23a3a;
     letter-spacing: 1px;
-    font-size: 16px;
+    font-size: 25px;
     padding: 10px 15px;
     background: #f44336;
     display: inline-block;
 }
 
 a.login-button:hover {
-    background: #fff;
+    background: #c16a6a;
     color: #f44336;
 }
 
