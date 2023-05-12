@@ -617,7 +617,7 @@
             text-align: center;
             padding: 70px 20px 80px 20px;
             transition: all ease-in-out 0.3s;
-            background: #fff;
+            background: #ffd4d4;
         }
         
         .services .icon-box .icon {
@@ -645,7 +645,7 @@
         
         .services .icon-box .icon svg path {
             transition: 0.5s;
-            fill: #f5f5f5;
+            fill: #d2d2d2;
         }
         
         .services .icon-box h4 {
@@ -703,8 +703,21 @@
         }
         
         .services .iconbox-pink:hover .icon path {
+            fill: #03e8cd;
+        }
+
+        
+        .services .iconbox-cherry i {
+            color: #e80368;
+        }
+        
+        .services .iconbox-cherry:hover .icon i {
+            color: #fff;
+        }
+        .services .iconbox-cherry:hover .icon path {
             fill: #e80368;
         }
+
         /* footer */
         
         .footer {

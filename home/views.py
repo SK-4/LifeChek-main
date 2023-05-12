@@ -134,3 +134,7 @@ class RelativeView(LoginRequiredMixin, View):
 
 def success_url(request):
     return render(request,'success.html')
+
+
+def streamlit_view(request):
+    return render(request, 'streamlit.html')
