@@ -138,3 +138,6 @@ def success_url(request):
 
 def streamlit_view(request):
     return render(request, 'streamlit.html')
+
+def chatroom(request):
+    return render(request,'chatroom.html')
