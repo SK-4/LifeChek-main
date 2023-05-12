@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html>
+<head>
+	<title>Random Tweet Generator</title>
+	<link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f5f8fa;
+        }
+
+        .tweet-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        .tweet-card {
+            background-color: #fff;
+            border-radius: 15px;
+            box-shadow: 0px 3px 6px rgba(0, 0, 0, 0.1);
+            width: 400px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .tweet-header {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .tweet-avatar img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .tweet-user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .tweet-username {
+            font-weight: bold;
+        }
+
+        .tweet-handle {
+            font-size: 12px;
+            color: #657786;
+        }
+
+        .tweet-content {
+            margin-bottom: 10px;
+        }
+
+        .tweet-actions {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .tweet-action {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            margin-right: 20px;
+            color: #657786;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .tweet-date {
+            font-size: 12px;
+            color: #657786;
+        }
+
+        .twitter-logo {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            justify-content: center;
+            font-size: 48px;
+            color: #1da1f2;
+            margin-bottom: 20px;
+        }
+
+    </style>
+</head>
+<body>
+	<div class="tweet-container">
+		<div class="tweet-card">
+			<div class="tweet-header">
+				<div class="tweet-avatar">
+					<img src="https://i.pravatar.cc/100" alt="Profile picture" />
+				</div>
+				<div class="tweet-user-info">
+					<div class="tweet-username" id="username">Soham Kshirsagar</div>
+				</div>
+			</div>
+			<div class="tweet-content">
+				<p>{{ tweet }}</p>
+			</div>
+			<div class="tweet-footer">
+				<div class="tweet-actions">
+					<div class="tweet-action"><i class="fa fa-comment"></i> {{ comments }}</div>
+					<div class="tweet-action"><i class="fa fa-retweet"></i> {{ retweets }}</div>
+					<div class="tweet-action"><i class="fa fa-heart"></i> {{ likes }}</div>
+				</div>
+				<div class="tweet-date">{{ tweet_date }}</div>
+			</div>
+		</div>
+		<div class="twitter-logo">
+			<i class="fa fa-twitter"></i>
+		</div>
+	</div>
+    <script>
+        var names = ['Soham Kshirsagar', 'Shweta Shinde', 'Shweta Thakare', 'Priyanka Mudgul', 'Viraj Rasal','Abhay Gangodak','Shubham Madake'];
+        var randomName = names[Math.floor(Math.random() * names.length)];
+        document.getElementById('username').innerHTML = randomName;
+
+    </script>
+</body>
+</html>

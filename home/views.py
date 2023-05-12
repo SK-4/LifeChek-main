@@ -153,9 +153,10 @@ def get_random_tweet():
     return random.choice(tweets)
 
 def random_tweet_view(request):
-    tweets = []
-    for i in range(5):
-        tweet = get_random_tweet()
-        tweets.append(tweet)
-    print(tweets[0])
-    return render(request, 'random_tweets.html', {'tweet': tweets})
+    # tweets = []
+    # for i in range(5):
+    #     tweet = get_random_tweet()
+    #     tweets.append(tweet)
+    tweet = get_random_tweet()
+    print(tweet)
+    return render(request, 'tweet.html', {'tweet': tweet})

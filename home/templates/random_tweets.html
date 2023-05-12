@@ -40,6 +40,13 @@
 			width: 48px;
 			background-color: #d9d9d9;
 		}
+
+		.tweet-avatar img {
+			max-width: 100%; /* set maximum width of image to 100% of parent div */
+			height: auto; /* set height to auto to maintain aspect ratio */
+		}
+
+
 		.tweet-username {
 			font-weight: 700;
 			margin-right: 4px;
@@ -79,109 +86,48 @@
 <body>
 	<div class="tweet-card">
 		<div class="tweet-header">
-			<div class="tweet-avatar"></div>
+			<div class="tweet-avatar">
+				<img src="https://i.pravatar.cc/100" alt="Profile picture" />
+			</div>
 			<div class="tweet-user-info">
-				<div class="tweet-username">Soham Kshirsagar</div>
+				<div class="tweet-username" id="username">Soham Kshirsagar</div>
 				<div class="tweet-handle">@soham7</div>
 			</div>
 		</div>
 		<div class="tweet-content">
-			<p>{{ tweets[0] }}</p>
+			<p id="tweet-content">{{ tweet }}</p>
 		</div>
 		<div class="tweet-footer">
 			<div class="tweet-actions">
-				<div class="tweet-action"><i class="fa fa-comment"></i> </div>
-				<div class="tweet-action"><i class="fa fa-retweet"></i> 5</div>
-				<div class="tweet-action"><i class="fa fa-heart"></i> 10</div>
+				<div class="tweet-action"><i class="fa fa-comment"></i> <span id="comments">10</span></div>
+				<div class="tweet-action"><i class="fa fa-retweet"></i> <span id="retweets">5</span></div>
+				<div class="tweet-action"><i class="fa fa-heart"></i> <span id="hearts">20</span></div>
 			</div>
-			<div class="tweet-date">1 hour ago</div>
+			<div class="tweet-date" id="tweet-date">1 hour ago</div>
 		</div>
 	</div>
-
-	<div class="tweet-card">
-		<div class="tweet-header">
-			<div class="tweet-avatar"></div>
-			<div class="tweet-user-info">
-				<div class="tweet-username">Shweta Thakare</div>
-				<div class="tweet-handle">@shweta7</div>
-			</div>
-		</div>
-		<div class="tweet-content">
-			<p>{{ tweets }}</p>
-		</div>
-		<div class="tweet-footer">
-			<div class="tweet-actions">
-				<div class="tweet-action"><i class="fa fa-comment"></i> </div>
-				<div class="tweet-action"><i class="fa fa-retweet"></i> 5</div>
-				<div class="tweet-action"><i class="fa fa-heart"></i> 10</div>
-			</div>
-			<div class="tweet-date">1 hour ago</div>
-		</div>
-	</div>
-
-	<div class="tweet-card">
-		<div class="tweet-header">
-			<div class="tweet-avatar"></div>
-			<div class="tweet-user-info">
-				<div class="tweet-username">Shubham Madake</div>
-				<div class="tweet-handle">@shubham</div>
-			</div>
-		</div>
-		<div class="tweet-content">
-			<p>{{ tweets }}</p>
-		</div>
-		<div class="tweet-footer">
-			<div class="tweet-actions">
-				<div class="tweet-action"><i class="fa fa-comment"></i> </div>
-				<div class="tweet-action"><i class="fa fa-retweet"></i> 5</div>
-				<div class="tweet-action"><i class="fa fa-heart"></i> 10</div>
-			</div>
-			<div class="tweet-date">1 hour ago</div>
-		</div>
-	</div>
-
-	<div class="tweet-card">
-		<div class="tweet-header">
-			<div class="tweet-avatar"></div>
-			<div class="tweet-user-info">
-				<div class="tweet-username">Shweta Shinde</div>
-				<div class="tweet-handle">@shweta</div>
-			</div>
-		</div>
-		<div class="tweet-content">
-			<p>{{ tweets }}</p>
-		</div>
-		<div class="tweet-footer">
-			<div class="tweet-actions">
-				<div class="tweet-action"><i class="fa fa-comment"></i> </div>
-				<div class="tweet-action"><i class="fa fa-retweet"></i> 5</div>
-				<div class="tweet-action"><i class="fa fa-heart"></i> 10</div>
-			</div>
-			<div class="tweet-date">1 hour ago</div>
-		</div>
-	</div>
-
-	<div class="tweet-card">
-		<div class="tweet-header">
-			<div class="tweet-avatar"></div>
-			<div class="tweet-user-info">
-				<div class="tweet-username">Viraj Rasal</div>
-				<div class="tweet-handle">@vir</div>
-			</div>
-		</div>
-		<div class="tweet-content">
-			<p>{{ tweets }}</p>
-		</div>
-		<div class="tweet-footer">
-			<div class="tweet-actions">
-				<div class="tweet-action"><i class="fa fa-comment"></i> </div>
-				<div class="tweet-action"><i class="fa fa-retweet"></i> 5</div>
-				<div class="tweet-action"><i class="fa fa-heart"></i> 10</div>
-			</div>
-			<div class="tweet-date">1 hour ago</div>
-		</div>
-	</div>
-
-
+	
+	<script>
+		// Randomly generate values for the tweet
+		var names = ['Soham Kshirsagar', 'Shweta Shinde', 'Shweta Thakare', 'Priyanka Mudgul', 'Viraj Rasal','Abhay Gangodak','Shubham Madake'];
+		var comments = ['10', '20', '30', '40'];
+		var retweets = ['5', '10', '15', '20'];
+		var hearts = ['20', '30', '40', '50'];
+		var dates = ['1 hour ago', '2 hours ago', '3 hours ago', '4 hours ago'];
+	
+		var randomName = names[Math.floor(Math.random() * names.length)];
+		var randomComments = comments[Math.floor(Math.random() * comments.length)];
+		var randomRetweets = retweets[Math.floor(Math.random() * retweets.length)];
+		var randomHearts = hearts[Math.floor(Math.random() * hearts.length)];
+		var randomDate = dates[Math.floor(Math.random() * dates.length)];
+	
+		// Set the generated values in the HTML
+		document.getElementById('username').innerHTML = randomName;
+		document.getElementById('comments').innerHTML = randomComments;
+		document.getElementById('retweets').innerHTML = randomRetweets;
+		document.getElementById('hearts').innerHTML = randomHearts;
+		document.getElementById('tweet-date').innerHTML = randomDate;
+	</script>
+	
 </body>
 </html>
