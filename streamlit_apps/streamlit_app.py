@@ -4,8 +4,6 @@ from transformers import BlenderbotTokenizer, BlenderbotForConditionalGeneration
 # import streamlit_authenticator as stauth
 from vaderSentiment.vaderSentiment import SentimentIntensityAnalyzer
 
-
-
 if 'count' not in st.session_state or 'list_ans' not in st.session_state or 'sentiment_count' not in st.session_state or 'positive_risk_percentage' not in st.session_state or 'negative_risk_percentage' not in st.session_state or 'neutral_risk_percentage' not in st.session_state or 'flag' not in st.session_state:
     st.session_state['count'] = 0
     st.session_state['list_ans'] = []
@@ -60,7 +58,8 @@ def generate_answer():
         st.session_state.flag=True
     while st.session_state.flag:
         for i in st.session_state.list_ans:
-            sentiment_scores(i)
+            # sentiment_scores(i)
+            pass
         st.session_state.flag = False
         st.session_state.count = 0
     result = model.generate(**inputs)
@@ -77,19 +76,12 @@ st.text_input("Share what you feel !!!", key="input_text", on_change=generate_an
 for chat in st.session_state.history:
     st_message(**chat)  # unpacking
 
-hide_streamlit_style = """
+
+hide_st_style = """
             <style>
+            #MainMenu {visibility: hidden;}
             footer {visibility: hidden;}
+            header {visibility: hidden;}
             </style>
             """
-st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
-# st.markdown("""
-# <style>
-# body {
-#   background: #ff0099; 
-#   background: -webkit-linear-gradient(to right, #ff0099, #493240); 
-#   background: linear-gradient(to right, #ff0099, #493240); 
-# }
-# </style>
-#     """, unsafe_allow_html=True)
+st.markdown(hide_st_style, unsafe_allow_html=True)

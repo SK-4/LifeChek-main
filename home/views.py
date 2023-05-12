@@ -10,6 +10,8 @@ from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.urls import reverse_lazy
 from .forms import RelativeForm
+import csv
+import random
 
 def index(request):
     return render(request, 'index.html')
@@ -141,3 +143,19 @@ def streamlit_view(request):
 
 def chatroom(request):
     return render(request,'chatroom.html')
+
+def get_random_tweet():
+
+    with open('random_tweets.csv', newline='', encoding='utf-8') as csvfile:
+        reader = csv.DictReader(csvfile)
+        tweets = [row['tweet'] for row in reader]
+
+    return random.choice(tweets)
+
+def random_tweet_view(request):
+    tweets = []
+    for i in range(5):
+        tweet = get_random_tweet()
+        tweets.append(tweet)
+    print(tweets[0])
+    return render(request, 'random_tweets.html', {'tweet': tweets})

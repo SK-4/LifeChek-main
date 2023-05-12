@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import index,quiz,results,display_all_patients,music,RelativeView,success_url,streamlit_view,chatroom
+from .views import index,quiz,results,display_all_patients,music,RelativeView,success_url,streamlit_view,chatroom,random_tweet_view
 
 urlpatterns = [
     path('',index,name='home'),
@@ -10,6 +10,7 @@ urlpatterns = [
     path('relative_info/',RelativeView.as_view(),name='RelativeView'),
     path('success_url/',success_url,name='success_url'),
     path('streamlit/', streamlit_view, name='streamlit'),
-    path('chatroom/',chatroom,name='chatroom')
+    path('chatroom/',chatroom,name='chatroom'),
+    path('mood/',random_tweet_view,name='mood'),
 ]
 
