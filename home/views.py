@@ -1,4 +1,4 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from .models import Question
 from accounts.models import User
 from random import sample
@@ -12,27 +12,14 @@ from django.urls import reverse_lazy
 from .forms import RelativeForm
 import csv
 import random
+from django.db.models import Avg
 
 def index(request):
     return render(request, 'index.html')
 
-# def quiz(request):
-#     questions = Question.objects.order_by('?')[:5]
-
-#     if request.method == 'POST':
-#         for question in questions:
-#             selected_option = request.POST.get(f'question_{question.id}')
-#             if selected_option:
-#                 question.selected_option = selected_option
-#                 question.save()
-
-#         return redirect('results')
-
-#     return render(request, 'quiz.html', {'questions': questions})
-
 @login_required
 def quiz(request):
-    questions = Question.objects.all()[:5]
+    questions = Question.objects.order_by('?')[:10]
 
     if request.method == 'POST':
         for question in questions:
@@ -88,18 +75,21 @@ def results(request):
         if question.selected_option == question.correct_option:
             score += 1
         elif question.selected_option == "Several Days":
-            score += 0.6
+            score += 0.4
         elif question.selected_option == "MORE THAN HALF THE DAYS":
             score+=0.2
         else:
             score+=0
-            
+
     # Update user score
     request.user.mental_score = (score / count) * 100.0
     request.user.save()
     context = "You are doing great"
     return render(request, 'results.html',{'context':context})
-    # return render(request, 'results.html', {'score': score, 'count': count})
+
+def patient_details(request, first_name):
+    patient = get_object_or_404(User, first_name=first_name)
+    return render(request, 'accounts/doctor/patient_details.html', {'patient': patient})
 
 def display_all_patients(request):
     patients = User.objects.filter(role="patient").values('first_name', 'last_name', 'email','date_joined','mental_score')
@@ -133,6 +123,7 @@ class RelativeView(LoginRequiredMixin, View):
             messages.success(request, 'Relative information saved successfully!')
             return redirect(success_url)
         # return render(request, self.template_name, {'form': form})
+    
 
 def success_url(request):
     return render(request,'success.html')

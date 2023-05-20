@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container my-5">
+    <h2>{{patient.first_name}} {{patient.last_name}}</h2>
+    <hr>
+    <div class="card">
+        <div class="card-body">
+            <p class="card-text">Email: {{ patient.email }}</p>
+            <p class="card-text">Last Login: {{ patient.last_login }}</p>
+            <p class="card-text">Relative Info: {{ patient.relative_name }} {{ patient.relative_phone_number }}</p>
+            <div class="progress mt-3">
+                <div class="progress-bar" role="progressbar" style="width: {{ patient.mental_score }}%" aria-valuenow="{{ patient.mental_score }}" aria-valuemin="0" aria-valuemax="100">{{ patient.mental_score }}%</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

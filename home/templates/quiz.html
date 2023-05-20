@@ -1,24 +1,72 @@
 {% extends 'base.html' %}
-count = 1
+<style>
+    /* CSS styles for the inner banner */
+.inner-banner-w3ls {
+  background-color: #81d3e1;
+  padding: 20px;
+  text-align: center;
+}
+
+.container {
+  max-width: 960px;
+  margin: 0 auto;
+  color: aqua;
+}
+
+/* CSS styles for the questions and options */
+p {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+form {
+  margin-top: 20px;
+}
+
+div {
+  margin-bottom: 10px;
+}
+
+input[type="radio"] {
+  margin-right: 10px;
+}
+
+label {
+  font-size: 18px;
+}
+
+button[type="submit"] {
+  background-color: #4CAF50;
+  color: #fff;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+}
+
+button[type="submit"]:hover {
+  background-color: #45a049;
+}
+
+</style>
 {% block content %}
     <!-- banner 2 -->
     <div class="inner-banner-w3ls">
         <div class="container">
+            <h3>Quiz</h3>
         </div>
     </div>
     <!-- //banner 2 -->
-
     {% for question in questions %}
-        
-        <p>{{ question.text }}</p>
+        <p> {{forloop.counter }}. {{ question.text }}</p>
         <form method="post">
             {% csrf_token %}
             {% for option in question.options %}
                 <div>
-                    <input type="radio" name="question_{{ question.id }}" id="{{ option }}" value="{{ option }}">
-                    <label for="{{ option }}">{{ option }}</label>
+                    <input type="radio" name=question_{{ question.id }}" id="{{ option }}_{{ question.id }}" value="{{ option }}">
+                    <label for="{{ option }}_{{ question.id }}">{{ option }}</label>
                 </div>
             {% endfor %}
+            <br> <!-- Add line break between questions -->
         {% endfor %}
         <button type="submit">Submit</button>
         </form>

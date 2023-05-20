@@ -1,0 +1,3 @@
+venv = "D:\DSML\PROJECTS\Calmly\calmly\Scripts\activate.ps1"
+
+superuser = virat@gmail.com  viratkohli

@@ -10,17 +10,20 @@
         <div class="col-lg-4 col-md-6 mb-4">
             <div class="card h-100">
                 <div class="card-body">
-                    <h5 class="card-title">{{ patient.first_name }} {{ patient.last_name }}</h5>
-                    <p class="card-text">Email: {{ patient.email }}</p>
-                    <p class="card-text">Date Joined: {{ patient.date_joined|date:"F d, Y" }}</p>
-                    <div class="progress mt-3">
-                        <div class="progress-bar" role="progressbar" style="width: {{ patient.mental_score }}%" aria-valuenow="{{ patient.mental_score }}" aria-valuemin="0" aria-valuemax="100">{{ patient.mental_score }}%</div>
-                    </div>
+                    <h5 class="card-title">
+                        <a href="{% url 'patient_details' patient.first_name %}">{{ patient.first_name }} {{ patient.last_name }}</a>
+                    </h5>
+                    {% if user == doctor %}
+                        <p class="card-text">Last Login: {{ user.date|date:"F d, Y" }}</p>
+                        <div class="progress mt-3">
+                            <div class="progress-bar" role="progressbar" style="width: {{ patient.mental_score }}%" aria-valuenow="{{ patient.mental_score }}" aria-valuemin="0" aria-valuemax="100">{{ patient.mental_score }}%</div>
+                        </div>
+                    {% endif %}
                 </div>
             </div>
         </div>
         {% endfor %}
     </div>
 </div>
-
 {% endblock %}
+

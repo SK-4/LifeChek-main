@@ -22,12 +22,8 @@ class User(AbstractUser):
                                     error_messages={
                                         'unique': "A user with that phone number already exists."
                                     })
-    mental_score = models.DecimalField(max_digits=5, decimal_places=2, blank=True, null=True,
-                                    error_messages={
-                                        'max_value': "Mental score can't be greater than 100%",
-                                        'min_value': "Mental score can't be less than 0%"
-                                    })
-    
+    mental_score = models.FloatField(default=0)
+    date = models.DateTimeField(auto_now_add=True)
     relative_name = models.CharField(max_length=50, blank=True, null=True)
     relative_email = models.EmailField(blank=True, null=True)
     relative_phone_number = models.CharField(blank=True, null=True, max_length=20)
