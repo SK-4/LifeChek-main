@@ -12,6 +12,6 @@ urlpatterns = [
     path('streamlit/', streamlit_view, name='streamlit'),
     path('chatroom/',chatroom,name='chatroom'),
     path('mood/',random_tweet_view,name='mood'),
-    path('patient_details/<str:email>/',patient_details,name='patient_details')
+    path('patient_details/<str:first_name>/',patient_details,name='patient_details')
 ]
 
