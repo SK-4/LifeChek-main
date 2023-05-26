@@ -3,10 +3,10 @@ import streamlit as st
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 # st.set_page_config(layout="centered", page_icon="💰", page_title="Invoice Generator")
-st.title("💰 Bill Generator")
+st.title("🏥 Medical Expenses")
 
 st.write(
-    "Easily Print Your Bills With No Extra Charges !!!"
+    "Easily Print Your Hospital Bills With No Extra Charges !!!"
 )
 
 

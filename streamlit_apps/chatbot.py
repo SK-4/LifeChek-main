@@ -26,7 +26,7 @@ if "history" not in st.session_state:
     st.session_state.history = []
 
 st.title("Calmly 🐧")
-st.write('Small Conversations, Peaceful Output')
+st.write('Small Conversations, Peaceful Results')
 
 def sentiment_scores(sentence):
     sid_obj = SentimentIntensityAnalyzer()
