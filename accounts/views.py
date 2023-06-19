@@ -142,7 +142,7 @@ class EditDoctorProfileView(UpdateView):
     model = User
     form_class = DoctorProfileUpdateForm
     context_object_name = 'doctor'
-    template_name = 'accounts/doctor/edit-profile.html'
+    template_name = 'accounts/patient/edit-profile.html'
     success_url = reverse_lazy('doctor-profile-update')
 
     @method_decorator(login_required(login_url=reverse_lazy('login')))

@@ -27,16 +27,9 @@ def quiz(request):
             if selected_option:
                 question.selected_option = selected_option
                 question.save()
-            else:
-                question.selected_option = None
-                question.save()
 
         return redirect('results')
 
-    # If the request method is not POST, clear the selected options
-    for question in questions:
-        question.selected_option = None
-        question.save()
 
     return render(request, 'quiz.html', {'questions': questions})
 # def quiz(request):
@@ -68,21 +61,23 @@ def quiz(request):
 
 @login_required
 def results(request):
-    questions = Question.objects.all()[:5]
+    questions = Question.objects.all()[:10]
     count = len(questions)
     score = 0
     for question in questions:
-        if question.selected_option == question.correct_option:
-            score += 1
-        elif question.selected_option == "Several Days":
-            score += 0.4
-        elif question.selected_option == "MORE THAN HALF THE DAYS":
-            score+=0.2
-        else:
-            score+=0
+        # print(question.selected_option)
+        # if question.selected_option == "NOT AT ALL":
+        #     score += 1
+        # elif question.selected_option == "Several Days":
+        #     score += 0.4
+        # elif question.selected_option == "MORE THAN HALF THE DAYS":
+        #     score+=0.2
+        # else:
+        #     score+=0
+        score += random.randint(1,10)
 
     # Update user score
-    request.user.mental_score = (score / count) * 100.0
+    request.user.mental_score = (score / count) * 10.0
     request.user.save()
     context = "You are doing great"
     return render(request, 'results.html',{'context':context})
